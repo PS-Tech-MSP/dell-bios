@@ -1,0 +1,123 @@
+.select,
+.text {
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  min-height: 34px;
+  width: 100%;
+  max-width: 360px;
+  color: var(--text);
+}
+.select:disabled,
+.text:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.radio input {
+  accent-color: var(--accent);
+}
+.slider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 340px;
+}
+.slider input {
+  flex: 1;
+  accent-color: var(--accent);
+}
+.slider span {
+  min-width: 48px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.readonly {
+  color: var(--text);
+  word-break: break-word;
+}
+.pw {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.pwSet {
+  color: var(--ok);
+  font-weight: 600;
+  min-width: 60px;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+.table th,
+.table td {
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.table th {
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.empty {
+  color: var(--text-faint);
+  padding: 8px;
+}
+.boot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 460px;
+}
+.boot ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg-input);
+}
+.boot li {
+  padding: 8px 12px;
+  cursor: default;
+}
+.boot li span {
+  color: var(--text-dim);
+  display: inline-block;
+  width: 24px;
+}
+.bootSel {
+  background: var(--accent-bg);
+  color: var(--accent);
+  font-weight: 600;
+}
+.bootBtns {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.bootBtns button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.addLabel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+}

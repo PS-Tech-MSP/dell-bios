@@ -1,0 +1,105 @@
+.main {
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6) var(--space-6);
+  min-width: 0;
+  background: var(--bg);
+}
+.title {
+  margin: 0 0 var(--space-4);
+  font-size: var(--fs-xl);
+  font-weight: 600;
+}
+.synth {
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+  font-weight: 400;
+  margin-left: var(--space-3);
+}
+.none {
+  color: var(--text-dim);
+}
+.locked {
+  margin: 0 0 var(--space-4);
+  padding: 8px var(--space-3);
+  background: var(--accent-bg);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+}
+.group {
+  margin-bottom: var(--space-5);
+  scroll-margin-top: var(--space-2);
+}
+.group h2 {
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-3);
+  border-left: 3px solid transparent;
+  border-bottom: 1px solid var(--border);
+}
+.inline {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+}
+.inline .ctl {
+  flex: none;
+  max-width: 55%;
+}
+.row:hover,
+.row:focus-within {
+  background: var(--bg-panel-2);
+}
+.changed {
+  border-left-color: var(--accent);
+}
+.text {
+  min-width: 0;
+}
+.label {
+  font-weight: 700;
+}
+.help,
+.reason,
+.trainer {
+  margin: 2px 0 0;
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+}
+.reason {
+  color: var(--warn);
+}
+.trainer {
+  color: var(--text-faint);
+  font-style: italic;
+}
+.off .label {
+  color: var(--text-faint);
+}
+.ctl {
+  min-width: 0;
+}
+.wideCtl {
+  width: 100%;
+}
+.flash {
+  animation: flash 1.8s ease-out;
+}
+@keyframes flash {
+  0%,
+  40% {
+    background: var(--accent-bg);
+  }
+  100% {
+    background: transparent;
+  }
+}

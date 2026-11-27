@@ -1,0 +1,92 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  padding-bottom: var(--footer-h);
+}
+.dialog {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  width: min(520px, 92vw);
+  max-height: 80vh;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-pop);
+}
+.dialog h2 {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+.dialog label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+}
+.dialog input[type='password'],
+.dialog input[type='text'] {
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: var(--fs);
+}
+.hint {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-sm);
+}
+.error {
+  margin: 0;
+  color: var(--danger);
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.changes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-height: 320px;
+  overflow: auto;
+}
+.changes li {
+  background: var(--bg-panel-2);
+  border-radius: var(--radius);
+  padding: var(--space-2) var(--space-3);
+}
+.changes b {
+  display: block;
+}
+.old {
+  color: var(--text-dim);
+}
+.arrow {
+  color: var(--accent);
+  margin: 0 var(--space-2);
+}
+.new {
+  color: var(--text);
+  font-weight: 600;
+}
+.msg {
+  margin: 0;
+  color: var(--text-dim);
+}
