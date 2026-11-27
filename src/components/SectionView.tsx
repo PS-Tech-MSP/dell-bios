@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { SECTIONS, SETTINGS } from '../data/settings'
 import { useStore, type Bios } from '../state/store'
+import { PaneHeader } from './PaneHeader'
 import { SettingControl } from './SettingControl'
 import styles from './SectionView.module.css'
 
@@ -72,49 +73,67 @@ export function SectionView({ sectionId, bios }: Props) {
     els[Math.max(0, Math.min(els.length - 1, i + (e.key === 'ArrowDown' ? 1 : -1)))]?.focus()
   }
 
+  const overview = sectionId === 'overview' || sectionId === 'about'
+  const groupLabel = (name: string, i: number) =>
+    sectionId === 'overview' && i === 0 ? bios.model.name : name.replace(/ (Information|Configuration)$/, '').toUpperCase()
+
   return (
-    <div className={styles.main} ref={ref} onKeyDown={onKeyDown}>
-      <h1 className={styles.title}>
-        {section?.label}
-        {(sectionId === 'overview' || sectionId === 'about') && <span className={styles.synth}>(synthetic)</span>}
-      </h1>
-      {bios.locked && (
-        <p className={styles.locked} role="status">
-          Settings are locked. Enter the Admin Password in the tile at the top left to make changes.
-        </p>
-      )}
-      {groups.length === 0 && <p className={styles.none}>No settings in this section for {bios.model.name}.</p>}
-      {groups.map((g) => (
-        <section key={g.name} className={styles.group} aria-label={g.name} data-group={g.name}>
-          <h2>{g.name}</h2>
-          {g.items.map((s) => {
-            const reason = bios.disabledReason(s)
-            const changed = s.id in bios.pending
-            const wide = s.control === 'table' || s.control === 'bootorder'
-            const inline = s.control === 'toggle' || s.control === 'readonly' || s.control === 'button' || s.control === 'password'
-            const showHelp = helpText || !!reason
-            return (
-              <div
-                key={s.id}
-                data-setting={s.id}
-                className={`${styles.row} ${inline ? styles.inline : ''} ${changed ? styles.changed : ''} ${reason || bios.locked ? styles.off : ''}`}
-              >
-                <div className={styles.text}>
-                  <label className={styles.label} htmlFor={`ctl-${s.id}`}>
-                    {s.label}
-                  </label>
-                  {helpText && <p className={styles.help}>{s.help}</p>}
-                  {reason && <p className={styles.reason}>Unavailable: {reason}</p>}
-                  {helpText && !s.verified && <p className={styles.trainer}>Trainer note: name, options or default not confirmed in a Dell manual.</p>}
-                </div>
-                <div className={`${styles.ctl} ${wide ? styles.wideCtl : ''}`} data-has-help={showHelp}>
-                  <SettingControl setting={s} bios={bios} disabled={!!reason || bios.locked} />
-                </div>
+    <div className={styles.pane}>
+      <PaneHeader title={section?.label ?? ''} bios={bios} />
+      <div className={styles.main} ref={ref} onKeyDown={onKeyDown}>
+        {bios.locked && (
+          <p className={styles.locked} role="status">
+            Settings are locked. Select Admin Password at the top left and enter the password to make changes.
+          </p>
+        )}
+        {groups.length === 0 && <p className={styles.none}>No settings in this section for {bios.model.name}.</p>}
+        {overview &&
+          groups.map((g, gi) => (
+            <section key={g.name} className={styles.ovGroup} aria-label={g.name} data-group={g.name}>
+              <div className={`${styles.ovLabel} ${sectionId === 'overview' && gi === 0 ? styles.ovModel : ''}`}>{groupLabel(g.name, gi)}</div>
+              <div className={styles.ovGrid}>
+                {g.items.map((s) => (
+                  <div key={s.id} data-setting={s.id} className={styles.ovField}>
+                    <div className={styles.ovName}>{s.label}</div>
+                    <div className={styles.ovValue}>
+                      <SettingControl setting={s} bios={bios} disabled />
+                    </div>
+                  </div>
+                ))}
               </div>
-            )
-          })}
-        </section>
-      ))}
+            </section>
+          ))}
+        {!overview &&
+          groups.map((g) => (
+            <section key={g.name} className={styles.group} aria-label={g.name} data-group={g.name}>
+              <h2>{g.name}</h2>
+              {g.items.map((s) => {
+                const reason = bios.disabledReason(s)
+                const changed = s.id in bios.pending
+                const table = s.control === 'table'
+                return (
+                  <div
+                    key={s.id}
+                    data-setting={s.id}
+                    className={`${styles.row} ${changed ? styles.changed : ''} ${reason || bios.locked ? styles.off : ''}`}
+                  >
+                    {!table && (
+                      <label className={styles.label} htmlFor={`ctl-${s.id}`}>
+                        {s.label}
+                      </label>
+                    )}
+                    {helpText && <p className={styles.help}>{s.help}</p>}
+                    {reason && <p className={styles.reason}>Unavailable: {reason}</p>}
+                    {helpText && !s.verified && <p className={styles.trainer}>Trainer note: name, options or default not confirmed in a Dell manual.</p>}
+                    <div className={styles.ctl}>
+                      <SettingControl setting={s} bios={bios} disabled={!!reason || bios.locked} />
+                    </div>
+                  </div>
+                )
+              })}
+            </section>
+          ))}
+      </div>
     </div>
   )
 }

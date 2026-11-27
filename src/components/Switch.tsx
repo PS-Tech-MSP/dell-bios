@@ -9,7 +9,7 @@ interface Props {
   nav?: boolean
 }
 
-/** Dell-style flat toggle switch. State is exposed to assistive tech via role=switch. */
+/** Dell-style toggle: track + knob with an ON/OFF word to the right. State is exposed via role=switch. */
 export function Switch({ checked, onChange, label, id, disabled, nav }: Props) {
   return (
     <button
@@ -23,7 +23,12 @@ export function Switch({ checked, onChange, label, id, disabled, nav }: Props) {
       className={`${styles.switch} ${checked ? styles.on : ''}`}
       onClick={() => onChange(!checked)}
     >
-      <span className={styles.knob} />
+      <span className={styles.track}>
+        <span className={styles.knob} />
+      </span>
+      <span className={styles.state} aria-hidden="true">
+        {checked ? 'ON' : 'OFF'}
+      </span>
     </button>
   )
 }

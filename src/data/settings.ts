@@ -19,7 +19,7 @@ export const SECTIONS: Section[] = [
   { id: 'power', label: 'Power' },
   { id: 'security', label: 'Security' },
   { id: 'passwords', label: 'Passwords' },
-  { id: 'update', label: 'Update Recovery' },
+  { id: 'update', label: 'Update,Recovery' },
   { id: 'sysmgmt', label: 'System Management' },
   { id: 'keyboard', label: 'Keyboard' },
   { id: 'preboot', label: 'Pre-boot Behavior' },

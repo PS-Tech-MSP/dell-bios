@@ -8,7 +8,7 @@ export function Logo({ height = 32, badge = false }: { height?: number; badge?: 
   const img = <img src={logo} alt="PS Tech" height={height} style={{ height, width: 'auto', display: 'block' }} />
   if (!badge) return img
   return (
-    <span style={{ display: 'inline-flex', background: '#f4f5f7', borderRadius: 10, padding: Math.round(height * 0.18) }}>
+    <span style={{ display: 'inline-flex', background: 'var(--post-logo-plate)', padding: Math.round(height * 0.18) }}>
       {img}
     </span>
   )

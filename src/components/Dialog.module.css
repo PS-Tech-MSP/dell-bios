@@ -10,41 +10,45 @@
 }
 .dialog {
   background: var(--bg);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
+  border: 1px solid var(--border-strong);
   width: min(520px, 92vw);
   max-height: 80vh;
   overflow: auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  box-shadow: var(--shadow-pop);
 }
 .dialog h2 {
+  flex: none;
   margin: 0;
+  padding: 10px var(--space-4);
+  background: var(--brand);
+  color: var(--white);
   font-size: var(--fs-lg);
-  font-weight: 600;
+  font-weight: 300;
+}
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
 }
 .dialog label {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  color: var(--text-dim);
-  font-size: var(--fs-sm);
+  color: var(--text-group);
 }
 .dialog input[type='password'],
 .dialog input[type='text'] {
-  background: var(--bg-input);
+  background: var(--bg);
   border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  padding: 8px 10px;
-  color: var(--text);
-  font-size: var(--fs);
+  padding: 0 10px;
+  height: 28px;
+  color: var(--text-value);
 }
 .hint {
   margin: 0;
-  color: var(--text-dim);
-  font-size: var(--fs-sm);
+  color: var(--text-group);
 }
 .error {
   margin: 0;
@@ -63,30 +67,28 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
   max-height: 320px;
   overflow: auto;
 }
 .changes li {
-  background: var(--bg-panel-2);
-  border-radius: var(--radius);
-  padding: var(--space-2) var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--divider);
 }
 .changes b {
   display: block;
 }
 .old {
-  color: var(--text-dim);
+  color: var(--text-group);
 }
 .arrow {
-  color: var(--accent);
+  color: var(--brand);
   margin: 0 var(--space-2);
 }
 .new {
   color: var(--text);
-  font-weight: 600;
+  font-weight: 700;
 }
 .msg {
   margin: 0;
-  color: var(--text-dim);
+  color: var(--text-group);
 }

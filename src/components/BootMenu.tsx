@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { getModel } from '../data/models'
 import { useStore } from '../state/store'
+import { Logo } from './Logo'
 import { ConfirmDialog } from './ConfirmDialog'
 import ui from './ui.module.css'
 import styles from './BootMenu.module.css'
@@ -80,10 +81,15 @@ export function BootMenu() {
 
   return (
     <div className={`${ui.screen} ${styles.wrap}`}>
-      <div className={styles.panel}>
+      <div className={styles.logo}>
+        <Logo height={30} />
+      </div>
+      <header className={styles.band}>
         <h1>
           {model.name} <span>One-Time Boot Menu</span>
         </h1>
+      </header>
+      <div className={styles.panel}>
         <div ref={listRef} role="listbox" aria-label="Boot options" className={styles.list}>
           <h2>UEFI Boot Devices</h2>
           {uefi.map((n, i) => row(n, i))}

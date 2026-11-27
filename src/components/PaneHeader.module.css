@@ -1,0 +1,96 @@
+.band {
+  position: relative;
+  flex: none;
+  height: var(--band-h);
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: var(--brand);
+  color: var(--white);
+}
+.title {
+  margin: 0;
+  align-self: center;
+  padding-left: var(--space-5);
+  font-size: var(--fs-title);
+  font-weight: 300;
+}
+.buttons {
+  display: flex;
+}
+.btn {
+  position: relative;
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: var(--brand-dark);
+  border: 0;
+  color: var(--white);
+}
+.btn span {
+  font-size: 9px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.btn:hover,
+.on {
+  filter: brightness(1.25);
+}
+.badge {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--amber);
+}
+.search {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: min(440px, 90%);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  z-index: 60;
+}
+.searchField {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--divider);
+}
+.searchField input {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  padding: 4px 8px;
+  height: 28px;
+  background: var(--bg);
+}
+.results {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+.results button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--divider);
+  padding: 8px 12px;
+}
+.results button:hover,
+.results button:focus {
+  background: var(--brand-hover);
+}
+.results small {
+  color: var(--text-group);
+}
+.none {
+  padding: 10px 12px;
+  color: var(--text-group);
+}

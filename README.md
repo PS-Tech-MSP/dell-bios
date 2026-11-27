@@ -112,6 +112,22 @@ Models and synthetic system info are in `src/data/models.ts`. Add a model by add
 - **Destructive options** (TPM Clear, Data Wipe, Delete Secure Boot keys) are toggles/buttons that only change simulator state.
 - The F12 menu entries are as specified in the brief; the manual pages that describe them did not load, so they are unconfirmed.
 
+### v3 restyle (flat Dell look)
+
+- **Reference images missing:** `reference/dell-bios-overview.png` and `reference/dell-bios-system-logs.png` were not in the repo or on the machine, so the restyle follows the numeric spec in the brief (sizes, hex colours, layout) only. Nothing was compared against the screenshots; do that once the images are added and adjust `src/styles/theme.css`.
+- **No screenshots:** Playwright/a headless browser is not installed, so `reference/output/` was not produced and 1366x768 was not checked visually. `npm run build` and `oxlint src` pass.
+- **Colours:** all colours are variables in `theme.css`; component CSS has none. The amber "pending" dot on Search and the green battery are small extras taken from the brief's palette.
+- **Fonts:** `@fontsource/roboto` (300/400/500/700, Latin subset only) bundled locally.
+- **Structure:** top bar is now logo + "BIOS Setup" + battery % (laptops, uses the synthetic Battery Level, 86%). The model name, tiles and nav live in the left pane (`Sidebar`, `Tiles`). Search / View All sit in the blue band (`PaneHeader`). The bottom bar spans the main pane only.
+- **Nav label:** "Update Recovery" renamed "Update,Recovery" as in the brief (and the real BIOS).
+- **Admin Password tile:** text only. Not set or locked opens a dialog (set or enter password); once unlocked the tile shows "Unlocked". The inline unlock field is gone because it cannot fit a 77x65 tile.
+- **Round elements kept:** the toggle track/knob and radio buttons are round, as on the real UI. Everything else is square; no shadows.
+- **Overview/About:** label column + 4-column grid. The first Overview group shows the model name; other groups use the group name uppercased without "Information"/"Configuration". Overview help text is not shown.
+- **Settings pages:** group heading, bold setting name, grey help (only when Help Text is ON), control beneath. Toggles show ON/OFF. Log tables use "Date / Time / Message" and show no repeated setting name above them.
+- **Icons:** only Search, View All, Close (dialogs) and the battery remain. Boot-order buttons are text ("Move Up", "Move Down", "Delete").
+- **Load Defaults:** "Restore Settings" renamed on the bottom bar and its dialog; options unchanged. The counter shows even at 0. "Apply Changes" is disabled at 0.
+- **Footer note:** single 10px grey line under the layout; black on the splash screen.
+
 ## Settings marked `verified: false`
 
 42 of ~200 settings (see the "Trainer note" under each setting, or search `u: true` in `settings.ts`): Boot Sequence editing, Enable Secure Boot (default), Secure Boot Mode (Audit value), Custom Mode Key Management and key buttons, Serial Port 1, SATA/NVMe Operation options, Multi-Display, Integrated NIC (options), UEFI Network Stack (options), HTTP(s) Boot Modes, Battery Configuration options, Advanced Charge time, Peak Shift and threshold, Type-C Connector Power, USB PowerShare (default), Thermal Management options, AC Recovery options, Deep Sleep Control options, Absolute, UEFI Boot Path Security, Firmware Device Tamper Detection (+Clear), Password Bypass, Dell Auto OS Recovery Threshold, Wake on LAN options, Auto On Time options, Intel AMT Capability options, Fn Lock Mode, Keyboard Illumination, Backlight Timeouts, Numlock, Warnings and Errors alternatives, Fastboot, Extend BIOS POST Time, MAC Address Pass-Through options, Multi Core Support, Adaptive C-States.

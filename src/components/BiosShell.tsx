@@ -55,23 +55,26 @@ export function BiosShell() {
     <div className={styles.shell}>
       <TopBar bios={bios} />
       <div className={styles.body}>
-        <Sidebar />
-        <SectionView sectionId={activeSection} bios={bios} />
+        <Sidebar bios={bios} />
+        <div className={styles.right}>
+          <SectionView sectionId={activeSection} bios={bios} />
+          <footer className={styles.bottom}>
+            <button className={`${ui.btn} ${styles.wide}`} disabled={bios.locked} onClick={() => setDialog('restore')}>
+              Load Defaults
+            </button>
+            <button className={`${ui.btn} ${styles.wide}`} disabled={count === 0} onClick={() => setDialog('apply')}>
+              Apply Changes
+            </button>
+            <span className={styles.counter} aria-live="polite">
+              {count}
+            </span>
+            <span className={styles.note}>changes were made</span>
+            <button className={`${ui.btn} ${styles.wide} ${styles.exit}`} onClick={requestExit}>
+              Exit
+            </button>
+          </footer>
+        </div>
       </div>
-      <footer className={styles.bottom}>
-        <button className={ui.btn} disabled={bios.locked} onClick={() => setDialog('restore')}>
-          Restore Settings
-        </button>
-        <span className={`${styles.pending} ${count > 0 ? styles.has : ''}`} aria-live="polite">
-          {count > 0 ? `${count} unsaved change${count === 1 ? '' : 's'}` : 'No unsaved changes'}
-        </span>
-        <button className={`${ui.btn} ${ui.primary}`} disabled={count === 0} onClick={() => setDialog('apply')}>
-          Apply Changes
-        </button>
-        <button className={`${ui.btn} ${ui.outline}`} onClick={requestExit}>
-          Exit
-        </button>
-      </footer>
       {viewAll && <ViewAll bios={bios} />}
 
       {dialog === 'apply' && (
@@ -137,7 +140,7 @@ export function BiosShell() {
 
       {dialog === 'restore' && (
         <ConfirmDialog
-          title="Restore Settings"
+          title="Load Defaults"
           onCancel={() => setDialog(null)}
           actions={[
             { label: 'Cancel', onClick: () => setDialog(null) },
@@ -166,7 +169,7 @@ export function BiosShell() {
             {bios.profile.customUser ? 'Custom User Settings are saved.' : 'No Custom User Settings saved yet.'}
           </p>
           <button
-            className={`${ui.btn} ${ui.secondary}`}
+            className={`${ui.btn}`}
             onClick={() => {
               saveCustom()
               setRestoreMsg('Current settings (including pending changes) saved as Custom User Settings.')

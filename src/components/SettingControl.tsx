@@ -3,7 +3,6 @@ import { infoValue } from '../data/settings'
 import type { Setting, Value } from '../data/types'
 import { useStore, type Bios, type PasswordKind } from '../state/store'
 import { ConfirmDialog } from './ConfirmDialog'
-import { ChevronDown, ChevronUp, PlusIcon, TrashIcon } from './Icons'
 import { Switch } from './Switch'
 import { PasswordDialog, type PasswordMode, type PasswordRules } from './PasswordDialog'
 import ui from './ui.module.css'
@@ -108,7 +107,7 @@ export function SettingControl({ setting: s, bios, disabled }: Props) {
           </button>
           {notice && (
             <ConfirmDialog title={s.label} onCancel={() => setNotice(null)} actions={[{ label: 'OK', kind: 'primary', onClick: () => setNotice(null) }]}>
-              <p style={{ margin: 0, color: 'var(--text-dim)' }}>{notice}</p>
+              <p className={styles.note}>{notice}</p>
             </ConfirmDialog>
           )}
         </>
@@ -158,7 +157,7 @@ export function SettingControl({ setting: s, bios, disabled }: Props) {
           )}
           {notice && (
             <ConfirmDialog title={s.label} onCancel={() => setNotice(null)} actions={[{ label: 'OK', kind: 'primary', onClick: () => setNotice(null) }]}>
-              <p style={{ margin: 0, color: 'var(--text-dim)' }}>{notice}</p>
+              <p className={styles.note}>{notice}</p>
             </ConfirmDialog>
           )}
         </div>
@@ -174,7 +173,7 @@ export function SettingControl({ setting: s, bios, disabled }: Props) {
             <tr>
               <th>Date</th>
               <th>Time</th>
-              <th>Description</th>
+              <th>Message</th>
             </tr>
           </thead>
           <tbody>
@@ -240,11 +239,11 @@ function BootOrder({ id, value, disabled, onChange }: { id: string; value: strin
         {value.length === 0 && <li className={styles.empty}>No boot options. Use Add Boot Option.</li>}
       </ol>
       <div className={styles.bootBtns}>
-        <button type="button" data-nav className={ui.btn} disabled={disabled || sel === 0 || !value.length} onClick={() => move(-1)} aria-label="Move up">
-          <ChevronUp />
+        <button type="button" data-nav className={ui.btn} disabled={disabled || sel === 0 || !value.length} onClick={() => move(-1)}>
+          Move Up
         </button>
-        <button type="button" data-nav className={ui.btn} disabled={disabled || sel >= value.length - 1} onClick={() => move(1)} aria-label="Move down">
-          <ChevronDown />
+        <button type="button" data-nav className={ui.btn} disabled={disabled || sel >= value.length - 1} onClick={() => move(1)}>
+          Move Down
         </button>
         <button
           type="button"
@@ -257,10 +256,10 @@ function BootOrder({ id, value, disabled, onChange }: { id: string; value: strin
           }}
           aria-label="Delete boot option"
         >
-          <TrashIcon /> Delete
+          Delete
         </button>
         <button type="button" data-nav className={ui.btn} disabled={disabled} onClick={() => setAdding(true)}>
-          <PlusIcon /> Add Boot Option
+          Add Boot Option
         </button>
       </div>
       {adding && (
@@ -294,7 +293,7 @@ function BootOrder({ id, value, disabled, onChange }: { id: string; value: strin
               onChange={(e) => setName(e.target.value)}
             />
           </label>
-          {value.includes(name.trim()) && <p style={{ margin: 0, color: 'var(--danger)' }}>That boot option already exists.</p>}
+          {value.includes(name.trim()) && <p className={styles.noteErr}>That boot option already exists.</p>}
         </ConfirmDialog>
       )}
     </div>

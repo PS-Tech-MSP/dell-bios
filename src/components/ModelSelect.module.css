@@ -1,50 +1,58 @@
 .wrap {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: var(--space-6) var(--space-4);
-  gap: var(--space-5);
-  background: var(--bg-panel-2);
+  background: var(--bg);
 }
-.head {
-  text-align: center;
+.logo {
+  flex: none;
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+}
+.band {
+  flex: none;
+  height: var(--band-h);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-5);
+  background: var(--brand);
+  color: var(--white);
+}
+.band h1 {
+  margin: 0;
+  font-size: var(--fs-title);
+  font-weight: 300;
+}
+.content {
+  padding: var(--space-5);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-5);
 }
-.head h1 {
-  margin: var(--space-3) 0 0;
-  font-weight: 600;
-  font-size: var(--fs-xl);
-}
-.head p {
+.lead {
   margin: 0;
-  color: var(--text-dim);
+  color: var(--text-group);
 }
 .families {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-5);
   flex-wrap: wrap;
-  justify-content: center;
-  max-width: 1100px;
 }
 .family {
-  background: var(--bg-panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: var(--space-4);
   min-width: 300px;
 }
 .family h2 {
   margin: 0 0 var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--divider);
   font-size: var(--fs-lg);
-  color: var(--accent);
+  font-weight: 700;
 }
 .family h2 span {
-  color: var(--text-dim);
+  color: var(--text-group);
   font-weight: 400;
-  font-size: var(--fs-sm);
+  font-size: var(--fs);
   margin-left: var(--space-2);
 }
 .models {
@@ -53,29 +61,22 @@
   gap: var(--space-2);
 }
 .model {
-  display: grid;
-  grid-template-columns: 48px 1fr;
-  grid-template-rows: auto auto;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   text-align: left;
-  column-gap: var(--space-3);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: var(--space-3);
-  color: var(--text);
-}
-.model svg {
-  grid-row: 1 / 3;
-  color: var(--accent);
+  background: var(--white);
+  border: 1px solid var(--brand);
+  padding: 8px var(--space-3);
+  color: var(--brand);
 }
 .model small {
-  color: var(--text-dim);
+  color: var(--text-group);
+  font-size: var(--fs);
 }
 .model:hover {
-  border-color: var(--accent);
-  background: var(--bg-hover);
+  background: var(--brand-hover);
 }
 .reset {
-  margin-top: var(--space-3);
+  align-self: flex-start;
 }

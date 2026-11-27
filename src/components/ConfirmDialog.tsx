@@ -54,6 +54,7 @@ export function ConfirmDialog({ title, children, actions, onCancel }: Props) {
         }}
       >
         <h2>{title}</h2>
+        <div className={styles.body}>
         {children}
         <div className={styles.actions}>
           {actions.map((a) => (
@@ -61,12 +62,13 @@ export function ConfirmDialog({ title, children, actions, onCancel }: Props) {
               key={a.label}
               data-primary={a.kind === 'primary'}
               disabled={a.disabled}
-              className={`${ui.btn} ${a.kind === 'primary' ? ui.primary : `${ui.secondary} ${a.kind === 'danger' ? ui.danger : ''}`}`}
+              className={`${ui.btn} ${a.kind === 'primary' ? ui.primary : ''} ${a.kind === 'danger' ? ui.danger : ''}`}
               onClick={a.onClick}
             >
               {a.label}
             </button>
           ))}
+        </div>
         </div>
       </div>
     </div>

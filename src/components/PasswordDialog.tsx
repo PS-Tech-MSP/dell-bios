@@ -76,6 +76,7 @@ export function PasswordDialog({ mode, title, current, rules, onSubmit, onCancel
         }}
       >
         <h2>{title}</h2>
+        <div className={styles.body}>
         {needsOld && (
           <label>
             {mode === 'enter' ? 'Enter password' : 'Old password'}
@@ -117,12 +118,13 @@ export function PasswordDialog({ mode, title, current, rules, onSubmit, onCancel
           </p>
         )}
         <div className={styles.actions}>
-          <button type="button" className={`${ui.btn} ${ui.secondary}`} onClick={onCancel}>
+          <button type="button" className={`${ui.btn}`} onClick={onCancel}>
             Cancel
           </button>
           <button type="submit" className={`${ui.btn} ${ui.primary}`}>
             {mode === 'delete' ? 'Delete' : 'OK'}
           </button>
+        </div>
         </div>
       </form>
     </div>

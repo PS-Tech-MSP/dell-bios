@@ -1,29 +1,39 @@
 .wrap {
-  background: var(--bg-panel-2);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+.logo {
+  flex: none;
+  height: var(--topbar-h);
   display: flex;
   align-items: center;
-  justify-content: center;
+  padding: 0 var(--space-3);
+}
+.band {
+  flex: none;
+  height: var(--band-h);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-5);
+  background: var(--brand);
+  color: var(--white);
+}
+.band h1 {
+  margin: 0;
+  font-size: var(--fs-title);
+  font-weight: 300;
+}
+.band h1 span {
+  margin-left: var(--space-2);
+  opacity: 0.85;
 }
 .panel {
-  width: min(640px, 94vw);
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-top: 4px solid var(--accent);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
+  width: min(640px, 100%);
+  padding: var(--space-4) var(--space-5);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-}
-.panel h1 {
-  margin: 0;
-  font-size: var(--fs-lg);
-  font-weight: 600;
-}
-.panel h1 span {
-  color: var(--text-dim);
-  font-weight: 400;
-  margin-left: var(--space-2);
 }
 .list {
   max-height: 55vh;
@@ -31,26 +41,23 @@
 }
 .list h2 {
   margin: var(--space-3) 0 var(--space-1);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-nav);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--accent);
+  color: var(--text-group);
 }
 .row {
-  padding: 8px 12px;
-  border-left: 4px solid transparent;
-  border-radius: var(--radius);
+  padding: 3px 12px;
+  border-left: 3px solid transparent;
   cursor: default;
 }
 .row:hover {
-  background: var(--bg-hover);
+  color: var(--brand);
 }
 .sel,
 .sel:hover {
-  background: var(--accent-bg);
-  border-left-color: var(--accent);
-  color: var(--accent);
-  font-weight: 600;
+  border-left-color: var(--brand);
+  color: var(--brand);
 }
 .foot {
   display: flex;
@@ -58,21 +65,22 @@
   justify-content: space-between;
   gap: var(--space-3);
   flex-wrap: wrap;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--divider);
 }
 .usb {
-  color: var(--text-dim);
+  color: var(--text-group);
   display: flex;
   gap: var(--space-2);
   align-items: center;
 }
 .usb input {
-  accent-color: var(--accent);
+  accent-color: var(--brand);
 }
 .keys {
-  color: var(--text-faint);
-  font-size: var(--fs-sm);
+  color: var(--text-note);
 }
 .msg {
   margin: 0;
-  color: var(--text-dim);
+  color: var(--text-group);
 }
