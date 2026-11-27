@@ -3,82 +3,154 @@
   flex-direction: column;
   background: var(--bg);
 }
-.logo {
+.header {
   flex: none;
-  height: var(--topbar-h);
   display: flex;
   align-items: center;
-  padding: 0 var(--space-3);
-}
-.band {
-  flex: none;
-  height: var(--band-h);
-  display: flex;
-  align-items: center;
+  gap: var(--space-4);
+  height: 88px;
   padding: 0 var(--space-5);
-  background: var(--brand);
-  color: var(--white);
+  border-bottom: 1px solid var(--divider);
 }
-.band h1 {
+.model {
   margin: 0;
-  font-size: var(--fs-title);
+  font-size: 20px;
   font-weight: 300;
+  color: var(--brand);
 }
-.band h1 span {
-  margin-left: var(--space-2);
-  opacity: 0.85;
-}
-.panel {
-  width: min(640px, 100%);
-  padding: var(--space-4) var(--space-5);
+.ids {
+  margin: 0 0 0 auto;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-5);
 }
-.list {
-  max-height: 55vh;
-  overflow: auto;
-}
-.list h2 {
-  margin: var(--space-3) 0 var(--space-1);
+.ids dt {
   font-size: var(--fs-nav);
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--text-group);
-}
-.row {
-  padding: 3px 12px;
-  border-left: 3px solid transparent;
-  cursor: default;
-}
-.row:hover {
   color: var(--brand);
 }
-.sel,
-.sel:hover {
-  border-left-color: var(--brand);
+.ids dd {
+  margin: 0;
+  color: var(--text-value);
+}
+.body {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 28% minmax(0, 1fr);
+}
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  font-size: 14px;
+  padding: var(--space-5);
+}
+.left {
+  border-right: 1px solid var(--divider);
+}
+.h2 {
+  margin: 0 0 var(--space-2);
+  font-size: 20px;
+  font-weight: 700;
   color: var(--brand);
 }
-.foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-  padding-top: var(--space-3);
-  border-top: 1px solid var(--divider);
+.right .h2 {
+  font-size: 21px;
 }
-.usb {
-  color: var(--text-group);
+.h3 {
+  margin: 56px 0 var(--space-2);
+  font-size: var(--fs-lg);
+  font-weight: 400;
+  color: var(--brand);
+}
+.text {
+  margin: 0 0 var(--space-3);
+  line-height: 1.35;
+  color: var(--text-value);
+}
+.note {
+  display: block;
+  margin: 40px 0 var(--space-2) var(--space-3);
+  color: var(--brand);
+}
+.noteText {
+  margin-left: var(--space-4);
+}
+.devices {
   display: flex;
+  flex-direction: column;
   gap: var(--space-2);
+}
+.device {
+  display: flex;
   align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: 10px var(--space-3);
+  background: var(--bg-left);
+  border: 0;
+  color: var(--brand);
+  font-size: var(--fs-lg);
+  text-align: left;
+  overflow-wrap: anywhere;
 }
-.usb input {
-  accent-color: var(--brand);
+.icon {
+  flex: none;
+  color: var(--text-group);
 }
-.keys {
-  color: var(--text-note);
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 32px var(--space-5) 0;
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+  aspect-ratio: 1.85;
+  padding: var(--space-3);
+  background: var(--bg-left);
+  border: 0;
+  color: var(--brand);
+  text-align: left;
+}
+.tile strong {
+  font-size: 14px;
+  font-weight: 400;
+}
+.tile span {
+  color: var(--text-group);
+}
+.device:hover,
+.device:focus-visible,
+.tile:hover,
+.tile:focus-visible {
+  background: var(--boot-hover);
+  color: var(--white);
+  outline: none;
+}
+.device:hover .icon,
+.device:focus-visible .icon,
+.tile:hover span,
+.tile:focus-visible span {
+  color: var(--boot-hover-sub);
+}
+.exitRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+.exit,
+.back {
+  min-width: 100px;
+}
+.placeholder {
+  padding: var(--space-5);
 }
 .msg {
   margin: 0;

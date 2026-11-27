@@ -128,6 +128,16 @@ Models and synthetic system info are in `src/data/models.ts`. Add a model by add
 - **Load Defaults:** "Restore Settings" renamed on the bottom bar and its dialog; options unchanged. The counter shows even at 0. "Apply Changes" is disabled at 0.
 - **Footer note:** single 10px grey line under the layout; black on the splash screen.
 
+### v4 One-Time Boot Menu
+
+- **Reference image:** the image turned up (in `references/`, not `reference/`) after the first pass. Where it disagreed with the written sizes I followed the image: tiles are wide fluid rectangles (about 1.85:1, 20px gaps) not squares, headings are ~20-21px instead of 24/26px, model name ~20px, header 88px tall, text 14px (device names 16px), EXIT is pinned bottom-right of the pane and about 100px wide. No Playwright, so no pixel comparison was run.
+- **Scope:** only `BootMenu.tsx/.module.css` changed, plus two appended variables (`--boot-hover`, `--boot-hover-sub`) at the end of `theme.css`.
+- **Nothing preselected:** tiles and rows are grey until hover or keyboard focus (solid `#0086C2`). The first arrow key focuses the first device row.
+- **Device list:** built from the saved `boot.order`. The old "Onboard NIC" entries are replaced by one "UEFI HTTPs Boot" row, shown only while HTTP(s) Boot is on and the UEFI Network Stack is not Disabled. A synthetic NVMe row (model storage + service-tag-based serial) is inserted after Windows Boot Manager if the order has none. Custom boot options added in Setup still appear.
+- **Boot behaviour:** choosing a device shows the existing dialog ("Booting from ... (simulated)") then returns to the splash. The old "Simulate USB" checkbox and the Other Options list were removed, as they are not in the new design.
+- **Placeholders:** the five non-Setup tasks open a simple page with a BACK button; Esc goes back, and Esc on the menu is EXIT.
+- **Layout sizes:** the right area scrolls if needed. Icons are simple original line drawings (drive, network).
+
 ## Settings marked `verified: false`
 
 42 of ~200 settings (see the "Trainer note" under each setting, or search `u: true` in `settings.ts`): Boot Sequence editing, Enable Secure Boot (default), Secure Boot Mode (Audit value), Custom Mode Key Management and key buttons, Serial Port 1, SATA/NVMe Operation options, Multi-Display, Integrated NIC (options), UEFI Network Stack (options), HTTP(s) Boot Modes, Battery Configuration options, Advanced Charge time, Peak Shift and threshold, Type-C Connector Power, USB PowerShare (default), Thermal Management options, AC Recovery options, Deep Sleep Control options, Absolute, UEFI Boot Path Security, Firmware Device Tamper Detection (+Clear), Password Bypass, Dell Auto OS Recovery Threshold, Wake on LAN options, Auto On Time options, Intel AMT Capability options, Fn Lock Mode, Keyboard Illumination, Backlight Timeouts, Numlock, Warnings and Errors alternatives, Fastboot, Extend BIOS POST Time, MAC Address Pass-Through options, Multi Core Support, Adaptive C-States.

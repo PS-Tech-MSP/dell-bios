@@ -121,3 +121,9 @@ button {
 ::-webkit-scrollbar-track {
   background: var(--scroll-track);
 }
+
+/* One-Time Boot Menu (hover/focus state) */
+:root {
+  --boot-hover: #0086c2;
+  --boot-hover-sub: #d9eef8;
+}
